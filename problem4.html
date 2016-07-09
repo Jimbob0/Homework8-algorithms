@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		// (source: http://www.w3resource.com/javascript-exercises/javascript-array-exercises.php with edits)
+
+		// Write a JavaScript program which prompts the user for a number and console.logs that number as a string with dashes (-) between each two odd digits. For example if the user types 0253697 the output should be “025-369-7”.
+		var num = prompt('Pick a number').split('');
+		for (var i = 0; i < num.length; i++) {
+			num[i] = parseFloat(num[i]);
+		}
+		for (var i = 0 ; i < num.length; i++) {
+			if (num[i] % 2 !== 0 && num[i+1] % 2 !== 0 && num[i+1]){
+				num[i] = num[i] + '-';
+			} else num[i] = num[i].toString()
+		}
+		num = num.join("");
+		console.log(num);
+	</script>
+</body>
+</html>

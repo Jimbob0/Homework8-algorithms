@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		// Write a short adventure game.
+
+		// In the style of Colossal Cave Adventure, write a three-room adventure game. The user should start in one room: “You are in a room. There is an exit to the north and to the west”. Try using the prompt text for output (prompt ("you are in a room..."))
+
+		// The user will type an instruction into the prompt (e.g. “go north”). Figure out what the user wants to do (“go north” or “go west”) and follow that instruction.
+
+		// Put a dragon in the north room and a shield in the west room. They must get the shield (“get shield” in the west room) to get past the dragon. The west room has an exit to the east (the starting room) and the north room has an exit to the north and south (the win condition and the starting room).
+
+		// When they get past the dragon (“go north” in the north room while holding the shield), they win the game.
+
+		// If you are feeling adventurous, try adding even more rooms, items, and challenges to this game!
+		var startRoom = 'You are in a dark underground hall. You see the light of guttering torches coming from the north and the west bracketing two doorways. 		Type north or west to choose';
+		var northRoom = 'You enter the northern room. A long hallway greets you and you can just barely make out a stairway at the end. There is no way of knowing where it leads but your only options are to take it or return. 		Type stairway or start to choose';
+		var westRoom = 'The only door is the one you came from, leading back to the start. You return.';
+		var outside = 'You climb the stairs and enter a great hall, you can see the exit!. You run towards it. You hear a roar and flames spew from the right, directly from the gaping maw of a mighty dragon. The dragons flames block the exit but it makes no sign of moving from its position.';
+		var dragonNoShield = 'The dragon growls as you approach the exit and begins to take a breath. With no way to protect yourself, you race back down the stairs, into the safety of the hallway.';
+		var dragonShield = 'If only you had some way to deflect its terrible flames. The cool touch of metal on your back reminds you, the Mirrored Shield! You pull out the shield. Facing the dragon and blocking its breath with your shield, you slowly back towards the exit and freedom. The heat builds and builds, sweat starts to bead on your face, and the flames lick past the corners of the shield until, suddenly, you feel a cool breeze on your back. You made it! You turn and run into the hills and then fall exhausted and slightly singed onto the fresh grass.';
+		var shield = '';
+		var text = '';
+		var loc = 'start';
+		var exposition = prompt('You awake to the sound of water, slowly dripping onto flagged stones. You slowly come to but the unfamilarity of your surroundings shocks the world back into focus.')
+		while (loc !== 'escaped'){
+			if (loc === 'start') {
+				loc = prompt(startRoom);
+			}
+			if (loc === 'west'){
+				if (shield !== 'shield'){
+					shield = prompt('The western door leads you too what appears to be an abandoned armory empty except for a single, brillantly shining shield in the corner. 		Type shield to pick it up.');
+				} else {
+					text = prompt('The armory where you got the shield is now completely empty.')
+				}
+				text = prompt(westRoom);
+				loc = prompt(startRoom);
+			}
+			if (loc === 'north'){
+				loc = prompt(northRoom);
+				if (loc === 'stairway'){
+					text = prompt(outside);
+					if (shield ==='shield'){
+						text = prompt(dragonShield);
+						loc = 'escaped';
+					} else {
+						text = prompt(dragonNoShield);
+						loc = 'north';
+					}
+				}
+			}
+		}
+		var finish = prompt('The ground shakes beneath your feet. With mounting dread you realize your mistake. The dragons shadow creeps across your face. Any last words?');
+	</script>
+</body>
+</html>
